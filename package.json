@@ -1,6 +1,6 @@
 {
   "name": "fe-cucumber-manager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Manager for composing reusable cucumber components",
   "main": "index.js",
   "keywords": [
@@ -33,25 +33,25 @@
     "mocha": "^3.1.2"
   },
   "foundry": {
-	"releaseCommands": [
-		{
-			"type": "releaseCommand",
-			"command": "foundry-release-require-branch",
-			"options": {
-				"branchName": "master"
-			}
-		},
-		"foundry-release-npm",
-		"foundry-release-git-semver-branches",
-		{
-			"type": "releaseCommand",
-			"command": "foundry-release-slack-notify",
-			"options": {
-				"channel": "#frontend",
-				"webhook": "https://hooks.slack.com/services/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",
-				"text": "{{npm.package.name}}@{{FOUNDRY.VERSION}} released"
-			}
-		}
-	]
-}
+    "releaseCommands": [
+      {
+        "type": "releaseCommand",
+        "command": "foundry-release-require-branch",
+        "options": {
+          "branchName": "master"
+        }
+      },
+      "foundry-release-npm",
+      "foundry-release-git-semver-branches",
+      {
+        "type": "releaseCommand",
+        "command": "foundry-release-slack-notify",
+        "options": {
+          "channel": "#frontend",
+          "webhook": "https://hooks.slack.com/services/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",
+          "text": "{{npm.package.name}}@{{FOUNDRY.VERSION}} released"
+        }
+      }
+    ]
+  }
 }
