@@ -1,0 +1,33 @@
+{
+  "name": "fe-cucumber-manager",
+  "version": "0.0.1",
+  "description": "A Manager for composing reusable cucumber components",
+  "main": "index.js",
+  "keywords": [
+    "acceptance testing",
+    "cucumber"
+  ],
+  "author": "Zenobius Jiricek <zeno.jiricek@fusion.com.au>",
+  "license": "MIT",
+  "scripts": {
+    "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -s -r 0",
+    "documentation": "documentation readme ./index.js -s 'Api'",
+    "release": "foundry release",
+    "release-resume": "foundry resume"
+  },
+  "dependencies": {
+    "debug": "^2.2.0",
+    "object-path": "^0.11.2",
+  },
+  "devDependencies": {
+    "conventional-changelog-cli": "^1.1.1",
+    "conventional-changelog-eslint": "^0.1.0",
+    "cross-spawn": "^2.1.5",
+    "documentation": "^4.0.0-beta9",
+    "foundry": "~4.0.3",
+    "foundry-release-git-semver-branches": "^2.0.0",
+    "foundry-release-npm": "~2.0.1",
+    "foundry-release-require-branch": "~0.0.2",
+
+  }
+}
