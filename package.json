@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "debug": "^2.2.0",
-    "object-path": "^0.11.2",
+    "object-path": "^0.11.2"
   },
   "devDependencies": {
     "conventional-changelog-cli": "^1.1.1",
@@ -28,7 +28,6 @@
     "foundry": "~4.0.3",
     "foundry-release-git-semver-branches": "^2.0.0",
     "foundry-release-npm": "~2.0.1",
-    "foundry-release-require-branch": "~0.0.2",
-
+    "foundry-release-require-branch": "~0.0.2"
   }
 }
