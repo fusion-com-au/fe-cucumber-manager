@@ -31,5 +31,27 @@
     "foundry-release-npm": "~2.0.1",
     "foundry-release-require-branch": "~0.0.2",
     "mocha": "^3.1.2"
-  }
+  },
+  "foundry": {
+	"releaseCommands": [
+		{
+			"type": "releaseCommand",
+			"command": "foundry-release-require-branch",
+			"options": {
+				"branchName": "master"
+			}
+		},
+		"foundry-release-npm",
+		"foundry-release-git-semver-branches",
+		{
+			"type": "releaseCommand",
+			"command": "foundry-release-slack-notify",
+			"options": {
+				"channel": "#frontend",
+				"webhook": "https://hooks.slack.com/services/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",
+				"text": "{{npm.package.name}}@{{FOUNDRY.VERSION}} released"
+			}
+		}
+	]
+}
 }
