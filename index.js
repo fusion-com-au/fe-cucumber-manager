@@ -28,12 +28,7 @@ var objectPath = require('object-path'),
  * }
  */
 function Manager () {
-	this.Constants = {};
-	this.Helpers = [];
-	this.Selectors = [];
-	this.Phrases = [];
-	this.Store = objectPath({});
-	this.Api = null;
+	reset.call(this);
 }
 
 /**
@@ -42,12 +37,27 @@ function Manager () {
  * @param  {[type]} source [description]
  * @return {[type]}        [description]
  */
-Manager.reduceMerge = function(result, source) {
+function reduceMerge(result, source) {
 	Object.keys(source)
 		.forEach(function (name) {
 			result[name] = source[name];
 		});
 	return result;
+};
+
+function reset() {
+	this.Constants = {};
+	this.Helpers = [];
+	this.Selectors = [];
+	this.Phrases = [];
+	this.Store = objectPath({});
+	this.Api = null;
+	return this;
+};
+
+Manager.prototype.reset = function() {
+	reset.call(this);
+	return this;
 };
 
 /**
@@ -76,7 +86,12 @@ Manager.prototype.selectors = function(sources) {
  * @return {[type]}         [description]
  */
 Manager.prototype.constants = function(sources) {
-	this.Constants = sources.reduce(Manager.reduceMerge, this.Constants);
+	var self = this;
+	sources.forEach(function (source) {
+		Object.keys(source).forEach( function (key) {
+				self.Constants[key] = source[key];
+			});
+	})
 	return this;
 };
 
@@ -87,9 +102,11 @@ Manager.prototype.constants = function(sources) {
  * @return {Manager}
  */
 Manager.prototype.store = function(key, value) {
-	var inValid = key.constructor.name !== 'string' || key.constructor.name !== 'Array';
+	var valid = typeof key === 'string' ||
+		key.constructor.name === 'String' ||
+		key.constructor.name === 'Array';
 
-	if (inValid) {
+	if (!valid) {
 		throw new Error('Manager.store(key, value). Key must be an Array or a string');
 	}
 
