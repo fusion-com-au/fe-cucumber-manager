@@ -21,6 +21,7 @@
     "object-path": "^0.11.2"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "conventional-changelog-cli": "^1.1.1",
     "conventional-changelog-eslint": "^0.1.0",
     "cross-spawn": "^2.1.5",
@@ -28,6 +29,7 @@
     "foundry": "~4.0.3",
     "foundry-release-git-semver-branches": "^2.0.0",
     "foundry-release-npm": "~2.0.1",
-    "foundry-release-require-branch": "~0.0.2"
+    "foundry-release-require-branch": "~0.0.2",
+    "mocha": "^3.1.2"
   }
 }
