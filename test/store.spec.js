@@ -12,6 +12,14 @@ describe('Constants', function () {
 		Manager.reset();
 	})
 
+	it('Store should reject non Array or String keys',  function (done) {
+		expect(function () {
+			Manager.store(1, 1);
+		}).to.throw(Error);
+		expect(Manager.Store.get(1)).to.not.exist;
+
+		done();
+	});
 
 	it('Store should be able to set intitial values',  function (done) {
 		Manager

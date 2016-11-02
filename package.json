@@ -26,6 +26,7 @@
     "conventional-changelog-eslint": "^0.1.0",
     "cross-spawn": "^2.1.5",
     "documentation": "^4.0.0-beta9",
+    "eslint": "^3.9.1",
     "foundry": "~4.0.3",
     "foundry-release-git-semver-branches": "^2.0.0",
     "foundry-release-npm": "~2.0.1",

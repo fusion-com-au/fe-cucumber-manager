@@ -31,18 +31,19 @@ function Manager () {
 	reset.call(this);
 }
 
+Manager.InvalidStoreKeyException = 'Manager.store(key, value). Key must be an Array or a string';
+
 /**
  * Simple object merge reduce function
  * @param  {[type]} result [description]
  * @param  {[type]} source [description]
  * @return {[type]}        [description]
  */
-function reduceMerge(result, source) {
+function reduceMerge(source, target) {
 	Object.keys(source)
 		.forEach(function (name) {
-			result[name] = source[name];
+			target[name] = source[name];
 		});
-	return result;
 };
 
 function reset() {
@@ -76,7 +77,9 @@ Manager.prototype.api = function(thing) {
  * @return {Manager}
  */
 Manager.prototype.selectors = function(sources) {
-	this.Selectors = sources.reduce(Manager.reduceMerge, this.Selectors);
+	sources.forEach(function(source) {
+		reduceMerge(source, self.Selectors);
+	}.bind(this));
 	return this;
 };
 
@@ -86,12 +89,9 @@ Manager.prototype.selectors = function(sources) {
  * @return {[type]}         [description]
  */
 Manager.prototype.constants = function(sources) {
-	var self = this;
-	sources.forEach(function (source) {
-		Object.keys(source).forEach( function (key) {
-				self.Constants[key] = source[key];
-			});
-	})
+	sources.forEach(function(source) {
+		reduceMerge(source, this.Constants);
+	}.bind(this));
 	return this;
 };
 
@@ -107,11 +107,11 @@ Manager.prototype.store = function(key, value) {
 		key.constructor.name === 'Array';
 
 	if (!valid) {
-		throw new Error('Manager.store(key, value). Key must be an Array or a string');
+		throw Error(Manager.InvalidStoreKeyException);
+	} else {
+		this.Store.set(key, value);
+		return this;
 	}
-
-	this.Store.set(key, value);
-	return this;
 };
 
 /**
