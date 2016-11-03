@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-describe('Constants', function () {
+describe('Store', function () {
 
 	var Manager = require('../');
 

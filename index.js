@@ -150,7 +150,7 @@ Manager.prototype.phrases = function(sources) {
  * @param  {String} str
  * @return {String}
  */
-Manager.prototype.prepareStringForXpathUsage = function (str) {
+Manager.prototype.escapeXpathString = function (str) {
 	return [
 		'\"',
 		str.replace("'", "\'"),

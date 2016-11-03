@@ -37,7 +37,7 @@
     "releaseCommands": [
       {
         "type": "customCommand",
-        "updateFiles": "npm run documentation && git add README.md && git commit -am 'Docs: Updated' ",
+        "updateFiles": "npm run documentation && git add README.md && git commit -am 'Docs: Updated' "
       },
       {
         "type": "releaseCommand",
