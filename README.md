@@ -107,7 +107,7 @@ Instantiate phrases
 
 Returns **[Manager](#manager)** 
 
-### prepareStringForXpathUsage
+### escapeXpathString
 
 Formats a string for usage inside an Xpath query.
 
