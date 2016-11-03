@@ -1,6 +1,6 @@
 {
   "name": "fe-cucumber-manager",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Manager for composing reusable cucumber components",
   "main": "index.js",
   "keywords": [
@@ -35,6 +35,10 @@
   },
   "foundry": {
     "releaseCommands": [
+      {
+        "type": "customCommand",
+        "updateFiles": "npm run documentation && git add README.md && git commit -am 'Docs: Updated' ",
+      },
       {
         "type": "releaseCommand",
         "command": "foundry-release-require-branch",

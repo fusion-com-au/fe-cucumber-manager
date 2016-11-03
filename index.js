@@ -3,6 +3,7 @@ var objectPath = require('object-path'),
 
 /**
  * Main class
+ * @return {Manager}
  *
  * @example
  * 	var CucumberManager = require('fe-cucumber-manager');
@@ -34,10 +35,10 @@ function Manager () {
 Manager.InvalidStoreKeyException = 'Manager.store(key, value). Key must be an Array or a string';
 
 /**
- * Simple object merge reduce function
- * @param  {[type]} result [description]
- * @param  {[type]} source [description]
- * @return {[type]}        [description]
+ * Simple object merge function, overwrites existing properties.
+ * @param  {Object} source merge properties from
+ * @param  {Object} target merge properties into
+ * @return {Void}
  */
 function reduceMerge(source, target) {
 	Object.keys(source)
@@ -78,7 +79,7 @@ Manager.prototype.api = function(thing) {
  */
 Manager.prototype.selectors = function(sources) {
 	sources.forEach(function(source) {
-		reduceMerge(source, self.Selectors);
+		reduceMerge(source, this.Selectors);
 	}.bind(this));
 	return this;
 };
@@ -86,7 +87,7 @@ Manager.prototype.selectors = function(sources) {
 /**
  * Load up sources of constants.
  * @param  {Array} sources objects containing constants.
- * @return {[type]}         [description]
+ * @return {Manager}
  */
 Manager.prototype.constants = function(sources) {
 	sources.forEach(function(source) {
@@ -100,6 +101,22 @@ Manager.prototype.constants = function(sources) {
  * @param  {String|Array} key   valid key for npm:object-path
  * @param  {Any} value
  * @return {Manager}
+ * @example
+ * 	var CucumberManager = require('fe-cucumber-manager');
+ *
+ * // test/e2e/steps/steps.js
+ * module.exports = function () {
+ * 	CucumberManager
+ * 	  .store('foo', {
+ * 	  	some: {
+ * 	  		thing: {
+ * 	  			deep: {
+ * 	  				and: "meaningful"
+ * 	  			}
+ * 	  		}
+ * 	  	}
+ * 	  });
+ * 	}
  */
 Manager.prototype.store = function(key, value) {
 	var valid = typeof key === 'string' ||
