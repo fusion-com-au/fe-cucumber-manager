@@ -1,6 +1,6 @@
 {
   "name": "fe-cucumber-manager",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Manager for composing reusable cucumber components",
   "main": "index.js",
   "keywords": [
@@ -31,6 +31,7 @@
     "foundry-release-git-semver-branches": "^2.0.0",
     "foundry-release-npm": "~2.0.1",
     "foundry-release-require-branch": "~0.0.2",
+    "foundry-release-slack-notify": "0.0.3",
     "mocha": "^3.1.2"
   },
   "foundry": {
