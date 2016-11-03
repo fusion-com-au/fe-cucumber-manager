@@ -70,6 +70,8 @@ Returns **[Manager](#manager)**
 
 Set some initial values in the Global value store.
 
+Is just an [object-path](https://npmjs.org/package/object-path) object, having all the methods provided by that package.
+
 **Parameters**
 
 -   `key` **([String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array))** valid key for npm:object-path
@@ -93,6 +95,11 @@ module.exports = function () {
 	  	}
 	  });
 	}
+```
+
+```javascript
+CucumberManager.Store.get('foo.some.thing.deep');
+ // {and: 'meaningful'}
 ```
 
 Returns **[Manager](#manager)** 
