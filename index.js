@@ -2,6 +2,21 @@ var objectPath = require('object-path'),
 	debug = require('debug')('fe-cucumber-manager');
 
 /**
+ * Initialiser
+ * @private
+ */
+function reset() {
+	this.Constants = {};
+	this.Helpers = [];
+	this.Selectors = [];
+	this.Phrases = [];
+	this.Store = objectPath({});
+	this.Api = null;
+	return this;
+};
+
+
+/**
  * Main class
  * @return {Manager}
  *
@@ -47,16 +62,6 @@ function reduceMerge(source, target) {
 		});
 };
 
-function reset() {
-	this.Constants = {};
-	this.Helpers = [];
-	this.Selectors = [];
-	this.Phrases = [];
-	this.Store = objectPath({});
-	this.Api = null;
-	return this;
-};
-
 Manager.prototype.reset = function() {
 	reset.call(this);
 	return this;
@@ -98,6 +103,8 @@ Manager.prototype.constants = function(sources) {
 
 /**
  * Set some initial values in the Global value store.
+ *
+ * Is just an [object-path](https://npmjs.org/package/object-path) object, having all the methods provided by that package.
  * @param  {String|Array} key   valid key for npm:object-path
  * @param  {Any} value
  * @return {Manager}
@@ -117,6 +124,10 @@ Manager.prototype.constants = function(sources) {
  * 	  	}
  * 	  });
  * 	}
+ *
+ * @example
+ *  CucumberManager.Store.get('foo.some.thing.deep');
+ *  // {and: 'meaningful'}
  */
 Manager.prototype.store = function(key, value) {
 	var valid = typeof key === 'string' ||
@@ -163,7 +174,7 @@ Manager.prototype.escapeXpathString = function (str) {
  * @return {String}
  */
 Manager.prototype.formatSelector = function () {
-	return Array.slice.call(arguments).join('');
+	return [].slice.call(arguments).join('');
 };
 
 
